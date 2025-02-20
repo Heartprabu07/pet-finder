@@ -1,0 +1,94 @@
+.container {
+  display: flex;
+  width: 100%;
+  margin: auto;
+  gap: 20px;
+}
+
+/* Left Filter Box */
+.filter-box {
+  width: 20%;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.filter-box h3 {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.search-box, .species-dropdown {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Right Profile List */
+.profile-list {
+  width: 80%;
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px;
+}
+
+.profile-card {
+  flex: 0 0 300px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s;
+}
+
+.profile-card:hover {
+  transform: scale(1.05);
+}
+
+/* Full-size Image */
+.profile-photo {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.profile-details {
+  padding: 10px;
+  text-align: center;
+}
+
+.profile-details h3 {
+  margin: 5px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.profile-details p {
+  margin: 3px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .filter-box {
+    width: 100%;
+  }
+  .profile-list {
+    width: 100%;
+    justify-content: center;
+    overflow-x: auto;
+  }
+  .profile-card {
+    flex: 0 0 100%;
+  }
+}

@@ -1,0 +1,245 @@
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <!-- <h4 class="card-title">Missing Pet Report</h4>
+          <p class="card-description">Submitted Reports</p> -->
+          <div class="container">
+            <div class="row">
+                <div class="col-lg-12 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">All Pet Owners</h4>
+                      <div class="mat-elevation-z8">
+                        <mat-table [dataSource]="dataSource" matSort class="full-width-table">
+
+                          <ng-container matColumnDef="id">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> 1</mat-cell>
+                          </ng-container>
+                                            
+                          <ng-container matColumnDef="name">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{ row.name }} </mat-cell>
+                          </ng-container>
+                      
+                          <ng-container matColumnDef="email">
+                            <mat-header-cell *matHeaderCellDef> Email ID </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{ row.email }} </mat-cell>
+                          </ng-container>
+
+                          <ng-container matColumnDef="phonenumber">
+                            <mat-header-cell *matHeaderCellDef> Phone Number </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{ row.phoneNumber }} </mat-cell>
+                          </ng-container>
+
+                          <ng-container matColumnDef="status">
+                            <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> 
+                                <label [ngClass]="row.status === 1 ? 'badge badge-success' : 'badge badge-danger'">
+                                {{ row.status === 1 ? 'Active' : 'Inactive' }}
+                              </label> </mat-cell>
+                          </ng-container>
+                      
+                          <ng-container matColumnDef="created_date">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Create Date </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{ row.createdAt | date: 'dd-MMM-yyyy hh:mm a' }} </mat-cell>
+                          </ng-container>
+
+                          <ng-container matColumnDef="actions">
+                            <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+                            <mat-cell *matCellDef="let row">
+                              <button class="btn btn-inverse-success btn-icon" title="Change Status" style="margin-right: 10px;" (click)="editUser(row)">
+                                <i class="ti-pencil-alt"></i>
+                              </button>
+                              <button class="btn btn-inverse-danger btn-icon" title="Delete" (click)="deleteUser(row)">
+                                <i class="ti-trash"></i>
+                              </button>
+                            </mat-cell>
+                          </ng-container>
+                      
+                          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                      
+                        </mat-table>
+                      
+                        <!-- Pagination -->
+                        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                      
+                      </div>
+                      
+                      <!-- Filter Input -->
+                      <div>
+                        <!-- <mat-form-field appearance="standard">
+                          <mat-label>Filter Users</mat-label>
+                          <input matInput (keyup)="applyFilter($event)">
+                        </mat-form-field> -->
+                      </div>
+                      
+                      <!-- <div class="table-responsive">
+                        <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th>
+                                User
+                              </th>
+                              <th>
+                                First name
+                              </th>
+                              <th>
+                                Progress
+                              </th>
+                              <th>
+                                Amount
+                              </th>
+                              <th>
+                                Deadline
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="py-1">
+                                <img src="../../../assets/images/faces/face1.jpg" alt="image">
+                              </td>
+                              <td>
+                                Herman Beck
+                              </td>
+                              <td>
+                                <div class="progress">
+                                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                              </td>
+                              <td>
+                                $ 77.99
+                              </td>
+                              <td>
+                                May 15, 2015
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="py-1">
+                                <img src="../../../assets/images/faces/face2.jpg" alt="image">
+                              </td>
+                              <td>
+                                Messsy Adam
+                              </td>
+                              <td>
+                                <div class="progress">
+                                  <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                              </td>
+                              <td>
+                                $245.30
+                              </td>
+                              <td>
+                                July 1, 2015
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="py-1">
+                                <img src="../../../assets/images/faces/face3.jpg" alt="image">
+                              </td>
+                              <td>
+                                John Richards
+                              </td>
+                              <td>
+                                <div class="progress">
+                                  <div class="progress-bar bg-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                              </td>
+                              <td>
+                                $138.00
+                              </td>
+                              <td>
+                                Apr 12, 2015
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="py-1">
+                                <img src="../../../assets/images/faces/face4.jpg" alt="image">
+                              </td>
+                              <td>
+                                Peter Meggik
+                              </td>
+                              <td>
+                                <div class="progress">
+                                  <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                              </td>
+                              <td>
+                                $ 77.99
+                              </td>
+                              <td>
+                                May 15, 2015
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="py-1">
+                                <img src="../../../assets/images/faces/face5.jpg" alt="image">
+                              </td>
+                              <td>
+                                Edward
+                              </td>
+                              <td>
+                                <div class="progress">
+                                  <div class="progress-bar bg-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                              </td>
+                              <td>
+                                $ 160.25
+                              </td>
+                              <td>
+                                May 03, 2015
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="py-1">
+                                <img src="../../../assets/images/faces/face6.jpg" alt="image">
+                              </td>
+                              <td>
+                                John Doe
+                              </td>
+                              <td>
+                                <div class="progress">
+                                  <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                              </td>
+                              <td>
+                                $ 123.21
+                              </td>
+                              <td>
+                                April 05, 2015
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="py-1">
+                                <img src="../../../assets/images/faces/face7.jpg" alt="image">
+                              </td>
+                              <td>
+                                Henry Tom
+                              </td>
+                              <td>
+                                <div class="progress">
+                                  <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                              </td>
+                              <td>
+                                $ 150.00
+                              </td>
+                              <td>
+                                June 16, 2015
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div> -->
+                    </div>
+                  </div>
+                </div>         
+              </div>
+            </div>
+            </div>
+      </div>
+      </div>
+</div>

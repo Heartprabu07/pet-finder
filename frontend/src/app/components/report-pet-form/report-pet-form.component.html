@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card-body">
+                <h4 class="card-title">My Pets</h4>
+                <p class="card-description">Manage your lost & found pets.</p>
+                <p class="card-description">We're sorry, we have no pets with these search criteria. Please broaden your search and try again.</p>
+                <h4 class="card-title">Add New Pet</h4>
+                <p class="card-description">Report a new lost or found pet. Please do not add the same pet more than once.</p>
+                <div #mapContainer class="map-container"></div>
+
+              </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form [formGroup]="petProfileForm" (ngSubmit)="onSubmit()">
+                      <div class="form-group">
+                        <label for="petName">Pet Name</label>
+                        <input type="text" class="form-control form-control-sm" placeholder="Fido" aria-label="petname" formControlName="petName" required>
+                        <div *ngIf="petProfileForm.get('petName')?.invalid && petProfileForm.get('petName')?.touched">
+                            Pet Name is required.
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="Species">Species</label>
+                        <select formControlName="species" id="species" class="form-control">
+                          <option value="">Select Species</option>
+                          <option *ngFor="let sp of speciesList" [value]="sp.toLowerCase()">{{ sp }}</option>
+                        </select>
+                        <div *ngIf="petProfileForm.get('species')?.touched && petProfileForm.get('species')?.invalid" class="error">
+                          Species is required.
+                        </div>
+                      </div>
+                      <div class="form-group position-relative">
+                        <label for="petName">Nearest Address Last Seen</label>
+                        <input type="text" formControlName="lastSeenAddress" class="form-control form-control-sm"  placeholder="Click on the map to select a location..."
+                         required>
+                        <ul  *ngIf="isDropdownVisible"  class="dropdown-menu show">
+                            <li *ngFor="let place of searchResults" class="dropdown-item" (click)="selectLocation(place)">
+                              {{ place.place_name }}
+                            </li>
+                          </ul>
+                      </div>
+                      <div class="form-group">
+                        <label>Breed</label>
+                        <input type="text" class="form-control form-control-sm" placeholder="breed" formControlName="petBreed" required>
+                        <div *ngIf="petProfileForm.get('petBreed')?.invalid && petProfileForm.get('petBreed')?.touched">
+                            Breed is required.
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" formControlName="petAge" required class="form-control form-control-sm" placeholder="age">
+                        <div *ngIf="petProfileForm.get('petAge')?.invalid && petProfileForm.get('petAge')?.touched">
+                            Age is required and must be a positive number.
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label>Distinguishing Features</label>
+                        <textarea id="petFeatures" class="form-control form-control-sm" formControlName="petFeatures"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label>Pet Photo</label>
+                        <input id="petPhoto" type="file"  class="form-control form-control-sm" (change)="onFileChange($event)" />
+                        <div *ngIf="petPhotoPreview">
+                            <img [src]="petPhotoPreview" alt="Pet Photo" width="100" />
+                          </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary me-2" [disabled]="petProfileForm.invalid">Submit</button>
+                    </form>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  </div>

@@ -1,0 +1,35 @@
+<!-- 
+<div class="container-scroller">
+  <ng-container *ngIf="showLayout">
+    <app-header></app-header>
+    <div class="container-fluid page-body-wrapper">
+      <app-sidebar *ngIf="showLayout"></app-sidebar>
+      <div class="main-panel">
+        <div class="content-wrapper">
+        <router-outlet></router-outlet>
+      </div>
+        <app-footer></app-footer>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!showLayout">
+    <router-outlet></router-outlet>
+  </ng-container>
+</div>
+
+
+ -->
+ <div class="container-scroller">
+    <!-- partial -->
+    <app-header *ngIf="showLayout"></app-header>
+    <div class="container-fluid page-body-wrapper">
+      <div class="main-panel">
+        <div class="content-wrapper">
+        <router-outlet></router-outlet>
+      </div>
+      </div>
+      <!-- main-panel ends -->
+      <app-footer *ngIf="!showLayout"></app-footer>
+    </div>
+  </div>

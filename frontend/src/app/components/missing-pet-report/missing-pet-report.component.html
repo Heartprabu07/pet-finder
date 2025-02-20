@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Missing Pet Report</h4>
+        <p class="card-description">Submitted Reports</p>
+        <div class="container">
+          <!-- Left Filter Section -->
+          <div class="filter-box">
+            <h3>Filter</h3>
+            <input type="text" placeholder="Search by name..." [(ngModel)]="searchText" class="search-box"/>
+            <hr>
+            <label>Species:</label>
+            <select [(ngModel)]="selectedSpecies" class="species-dropdown">
+              <option value="">All</option>
+              <option *ngFor="let sp of speciesList" [value]="sp.toLowerCase()">{{ sp }}</option>
+            </select>
+            <hr>
+            <label>Status:</label>
+            <div class="status-filter">
+              <label class="status-option" *ngIf="role === 'admin'">
+                <input type="radio" [(ngModel)]="selectedStatus" value="2" name="status" />
+                <span>All</span>
+              </label>
+              <label class="status-option">
+                <input type="radio" [(ngModel)]="selectedStatus" value="0" name="status" />
+                <span>Lost</span>
+              </label>
+              <label class="status-option">
+                <input type="radio" [(ngModel)]="selectedStatus" value="1" name="status" />
+                <span>Found</span>
+              </label>
+            </div><hr>            
+            <label>Location:</label>
+            <input type="text" placeholder="Search by location..." [(ngModel)]="searchLocation" class="search-box"/>
+            <hr>
+             <!-- Last Seen Date Filter -->
+            <label>Last Seen Date:</label>
+            <input type="date" [(ngModel)]="selectedDate" class="search-box date-picker"/>
+          </div>
+
+          <div class="profile-list" *ngIf="getPaginatedPets().length > 0;else noRecords">
+            <div *ngFor="let pet of getPaginatedPets()" class="profile-card">
+              <img [src]="getFullImagePath(pet.petPhoto)" alt="Pet Photo" class="profile-photo"/>
+              <div class="profile-details">
+                <h3>{{ pet.petName }}</h3>
+                <p><strong>Species :</strong> {{ pet.species }}</p>
+                <p><strong>Breed :</strong> {{ pet.petBreed }}</p>
+                <p><strong>Age : </strong> {{ pet.petAge }} years</p>
+                <p><strong>Last Seen Date : </strong> {{ getTimeAgo(pet.dateReported)}}</p>
+                <p><strong>Last Seen : </strong> <span class="last-seen-address">{{ pet.lastSeenAddress }}</span></p>
+                <button (click)="viewPetDetails(pet)" class="view-icon">
+                  <i class="fa fa-eye"></i> View
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <ng-template #noRecords>
+            <div class="no-records">
+              <img src="../../../assets/images/no-record-found.jpg" alt="No Data" class="no-data-img"/>
+              <p>No Records Found</p>
+          </div>
+          </ng-template>
+        </div>
+
+        <div class="pagination" *ngIf="getPaginatedPets().length > 0;">
+          <button (click)="prevPage()" [disabled]="currentPage === 1">❮ Prev</button>
+          <span>Page {{ currentPage }} of {{ totalPages() }}</span>
+          <button (click)="nextPage()" [disabled]="currentPage === totalPages()">Next ❯</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

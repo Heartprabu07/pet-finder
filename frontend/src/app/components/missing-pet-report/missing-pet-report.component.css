@@ -1,0 +1,216 @@
+.container {
+  display: flex;
+  width: 100%;
+  margin: auto;
+  gap: 20px;
+}
+
+/* Left Filter Box */
+.filter-box {
+  width: 20%;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.filter-box h3 {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.status-filter {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.status-option {
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  padding: 6px 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.status-option:hover {
+  background: #e0e0e0;
+}
+
+.status-option input {
+  margin-right: 8px;
+  transform: scale(1.2);
+}
+
+.status-option span {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+
+.search-box, .species-dropdown {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Right Profile List */
+.profile-list {
+  gap: 20px;
+   width: 80%;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap; 
+}
+
+.profile-card {
+  flex: 1 1 calc(33.33% - 20px); /* 3 columns */
+  max-width: calc(33.33% - 20px);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s;
+  max-height: 450px;
+}
+
+.profile-card:hover {
+  transform: scale(1.05);
+}
+
+/* Full-size Image */
+.profile-photo {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.profile-details {
+  padding: 10px;
+  text-align: center;
+}
+
+.profile-details h3 {
+  margin: 5px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.profile-details p {
+  margin: 3px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.no-records {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* Adjust as needed */
+  text-align: center;
+  color: #777;
+  width: 80%;
+}
+
+.no-data-img {
+  width: 150px;
+  opacity: 0.6;
+  margin-bottom: 10px;
+}
+
+.no-records p {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+
+.last-seen-address {
+  white-space: nowrap;       /* Prevents text from wrapping */
+  overflow: hidden;          /* Hides overflowing content */
+  text-overflow: ellipsis;   /* Adds "..." at the end of overflow text */
+  max-width: 200px;          /* Set a max width to control truncation */
+  display: inline-block; 
+  vertical-align: middle;    /* Ensures the ellipsis applies properly */
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .filter-box {
+    width: 100%;
+  }
+  .profile-list {
+    width: 100%;
+    justify-content: center;
+    overflow-x: auto;
+  }
+  .profile-card {
+    flex: 1 1 calc(50% - 20px); /* 2 columns for tablets */
+    max-width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-card {
+    flex: 1 1 100%; /* 1 column for mobile */
+    max-width: 100%;
+  }
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 8px 15px;
+  margin: 0 5px;
+  border: none;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pagination button[disabled] {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.swal2-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.view-icon {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.view-icon i {
+  margin-right: 5px;
+}
+.full-width-modal {
+  max-width: none; /* Remove the default max-width restriction */
+  width: 100%;
+}
